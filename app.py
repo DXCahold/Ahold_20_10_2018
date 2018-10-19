@@ -56,7 +56,7 @@ def webhook():
 		if request_data["unknown"] == "phonenumber-no":
 			session["phonenumber"],session["signedin"],request_data["result"] = "",True,request_data["fulfillmentText"]
 			
-		if request_data["unknown"] == "Thankyou" or request_data["unknown"] == "nothing":
+		if request_data["unknown"] == "Thankyou" or "nothing" in request_data["unknown"]:
 			session["phonenumber"],session["signedin"],request_data["result"] = "",False, request_data["fulfillmentText"]
 		"""
 		if request_data["unknown"] == "order-yes":
