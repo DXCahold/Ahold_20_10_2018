@@ -112,7 +112,7 @@ def webhook():
 				#print(detail)
 				if detail["match"]:
 					if "not available currently" in request_data["result"]:
-						request_data["result"] = request_data["fulfillmentText"].replace(request_data["known"]["product"]+" is *result!","sorry!")
+						request_data["result"] = request_data["fulfillmentText"].replace(request_data["known"]["product"]+" is *result!","sorry!").replace("& *offer will be applied on "+request_data["known"]["product"]+"! would you like to place the order for sure?","")
 					else:
 						request_data["result"] = request_data["fulfillmentText"].replace("*availability",detail["availability"])
 					if len(detail["offer"])>0:
