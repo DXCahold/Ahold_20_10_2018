@@ -111,9 +111,10 @@ def webhook():
 								detail["offer"] = row["offer"]+" due to "+row["description"]
 				#print(detail)
 				if detail["match"]:
-					request_data["result"] = str(request_data["fulfillmentText"]).replace("*availability",detail["availability"])
 					if "not available currently" in request_data["result"]:
-						request_data["result"] = "sorry! "+request_data["known"]["product"]+" is currently unavailable!"
+						request_data["result"] = request_data["fulfillmentText"].replace(request_data["known"]["product"]+" is *result!","sorry!")
+					else:
+						request_data["result"] = request_data["fulfillmentText"].replace("*availability",detail["availability"])
 					if len(detail["offer"])>0:
 						request_data["result"] = request_data["result"].replace("*offer",detail["offer"])
 					else:
