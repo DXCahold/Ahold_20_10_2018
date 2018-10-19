@@ -19,6 +19,13 @@ def excel2json(workbook):
 			source[sheet].append(data)
 	return source,sessiondetails
 
+def Remove(duplicate): 
+    final_list = [] 
+    for num in duplicate: 
+        if num not in final_list: 
+            final_list.append(num) 
+    return final_list
+
 workbook = "Ahold.xlsx"
 book,session = excel2json(workbook)
 
@@ -70,6 +77,8 @@ def webhook():
 												availables.append(row[request_data["unknown"]])
 											else:
 												outofstocks.append(row[request_data["unknown"]])
+				availables = Remove(availables)
+				outofstocks = Remove(outofstocks)
 				if len(availables)>0:
 					request_data["result"] = str(request_data["fulfillmentText"]).replace('*result','available').replace('*availables ',str(availables).replace("[","").replace("]","").replace("'","").replace('"','').replace('.',' ')+" ")
 				else:
