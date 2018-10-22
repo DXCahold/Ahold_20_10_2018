@@ -103,7 +103,7 @@ def webhook():
 									if int(float(row["quantity"]))>=int(request_data["known"]["quantity"]):
 										detail["availability"] = "is available"
 									else:
-										detail["availability"] = " is available till "+str(int(float(row["quantity"])))+" in quantity"
+										detail["availability"] = " is available but till "+str(int(float(row["quantity"])))+" in quantity"
 								else:
 									detail["availability"] = " will be available on "+str(row["refilldate"])
 						if "offer" in headers:
