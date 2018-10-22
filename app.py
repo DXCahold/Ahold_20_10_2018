@@ -58,10 +58,7 @@ def webhook():
 			
 		if request_data["unknown"] == "Thankyou" or "nothing" in request_data["unknown"]:
 			session["phonenumber"],session["signedin"],request_data["result"] = "",False, request_data["fulfillmentText"]
-		"""
-		if request_data["unknown"] == "order-yes":
-			request_data["result"] = request_data["fulfillmentText"].replace("*phone-number",str(session["phonenumber"][i:i+1] for i in range(0,len(session["phonenumber"]),1)]).replace(" ","").replace("'","").replace("[","").replace("]","").replace(","," "))
-		"""	
+		
 		if request_data["unknown"] == "product":
 			if session["signedin"]:
 				availables,outofstocks = [],[]
