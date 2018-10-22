@@ -105,7 +105,7 @@ def webhook():
 									else:
 										detail["availability"] = "available till "+str(int(float(row["quantity"])))+" quantities"
 								else:
-									detail["availability"] = "unavailable currently"
+									detail["availability"] = "will be available on "+str(row["refilldate"])
 						if "offer" in headers:
 							if request_data["known"]["product"] == row["product"]:
 								detail["offer"] = row["offer"]+" due to "+row["description"]
