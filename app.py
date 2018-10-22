@@ -103,7 +103,7 @@ def webhook():
 									if int(float(row["quantity"]))>=int(request_data["known"]["quantity"]):
 										detail["availability"] = "is available"
 									else:
-										detail["availability"] = " is available but till "+str(int(float(row["quantity"])))+" in quantity"
+										detail["availability"] = "sorry! only "str(int(float(row["quantity"])))+" "+request_data["known"]["product"]+" available in stock "
 								else:
 									detail["availability"] = " will be available on "+str(row["refilldate"])
 						if "offer" in headers:
@@ -117,8 +117,8 @@ def webhook():
 						request_data["result"] = request_data["fulfillmentText"].replace("*offer will be applied","no offer available")
 					if "be available on" in detail["availability"]:
 						request_data["result"] = "sorry! "+request_data["known"]["product"]+" is currently unavailable and "+detail["availability"]
-					elif "till" in detail["availability"]:
-						request_data["result"] = request_data["result"].replace("*availability",detail["availability"]).replace("to proceed","to proceed with available quantity currently")
+					elif "only" in detail["availability"]:
+						request_data["result"] = request_data["result"].replace("Sure! "+request_data["known"]["product"]+" *availability","").replace("*availability",detail["availability"]).replace("to proceed","to proceed with available quantity currently")
 					else:
 						request_data["result"] = request_data["result"].replace("*availability",detail["availability"])
 				else:
