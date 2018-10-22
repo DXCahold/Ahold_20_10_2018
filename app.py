@@ -28,7 +28,7 @@ def Remove(duplicate):
 
 workbook = "Ahold.xlsx"
 book,session = excel2json(workbook)
-print(book)
+#print(book)
 
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
