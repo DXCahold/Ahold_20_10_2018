@@ -117,7 +117,7 @@ def webhook():
 						request_data["result"] = request_data["fulfillmentText"].replace("*offer will be applied","no offer available")
 					if "be available on" in detail["availability"]:
 						request_data["result"] = "sorry! "+request_data["known"]["product"]+" is currently unavailable and "+detail["availability"]
-					elif "till" in  in detail["availability"]:
+					elif "till" in detail["availability"]:
 						request_data["result"] = request_data["result"].replace("*availability",detail["availability"]).replace("to proceed","to proceed with available quantity currently")
 					else:
 						request_data["result"] = request_data["result"].replace("*availability",detail["availability"])
