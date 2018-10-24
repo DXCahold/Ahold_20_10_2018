@@ -133,7 +133,7 @@ def webhook():
 						if request_data["unknown"] in headers:
 							if request_data["known"]["product"] == row["product"]:
 								detail["match"],detail["result"] = True,row["location"]
-				if 	detail["match"]:
+				if detail["match"]:
 					request_data["result"] = str(request_data["fulfillmentText"]).replace("*result",detail["result"])
 				else:
 					request_data["result"] = "No such product found! please specify the exact product name"
@@ -147,9 +147,11 @@ def webhook():
 					for row in book[sheet]:
 						headers = row.keys()
 						if request_data["unknown"] in headers:
+							print (request_data["known"]["foodpair"])
+							print (row["foodpairing"])
 							if request_data["known"]["foodpair"] in row["foodpairing"]:
 								detail["match"],detail["result"] = True,str(detail["result"])+","+str(row["product"])
-				if 	detail["match"]:
+				if detail["match"]:
 					request_data["result"] = str(request_data["fulfillmentText"]).replace("*result",detail["result"])
 				else:
 					request_data["result"] = "No such product found! please specify the exact product name"
