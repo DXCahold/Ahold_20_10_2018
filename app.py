@@ -148,7 +148,7 @@ def webhook():
 						headers = row.keys()
 						if request_data["unknown"] in headers:
 							if request_data["known"]["foodpair"] in row["foodpairing"]:
-								detail["match"],detail["result"] = True,str(detail["result"])+","+str(row["foodpairing"])
+								detail["match"],detail["result"] = True,str(detail["result"])+","+str(row["product"])
 				if 	detail["match"]:
 					request_data["result"] = str(request_data["fulfillmentText"]).replace("*result",detail["result"])
 				else:
