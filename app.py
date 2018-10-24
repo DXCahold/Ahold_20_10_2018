@@ -140,6 +140,22 @@ def webhook():
 				
 			else:
 				request_data["result"] = "Hi! Please share your Phone number for personalized Assistance!"
+		if request_data["unknown"] == "foodpairing":
+			if session["signedin"]:
+				detail = {"match":False,"result":""}
+				for sheet in book.keys():
+					for row in book[sheet]:
+						headers = row.keys()
+						if request_data["unknown"] in headers:
+							if request_data["known"]["foodpair"] in row["foodpairing"]:
+								detail["match"],detail["result"] = True,str(detail["result"])+","+str(row["foodpairing"])
+				if 	detail["match"]:
+					request_data["result"] = str(request_data["fulfillmentText"]).replace("*result",detail["result"])
+				else:
+					request_data["result"] = "No such product found! please specify the exact product name"
+				
+			else:
+				request_data["result"] = "Hi! Please share your Phone number for personalized Assistance!"
 		"""
 		else:
 			request_data["result"] = request_data["fulfillmentText"]
