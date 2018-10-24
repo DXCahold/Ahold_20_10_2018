@@ -67,7 +67,7 @@ def webhook():
 					for row in book[sheet]:
 						headers = row.keys()
 						if "quantity" in headers:
-							for key in (request_data['known']).lower():
+							for key in (request_data['known']):
 								for header in headers:
 									if len(str(request_data['known'][key]))>0:
 										if request_data['known'][key] in row[header]:
@@ -95,7 +95,7 @@ def webhook():
 					for row in book[sheet]:
 						headers = row.keys()
 						if "quantity" in headers:
-							if request_data["known"]["product"] == row["product"].lower():
+							if request_data["known"]["product"] == row["product"]:
 								detail["match"] = True
 								if int(float(row["quantity"]))>0:
 									if int(float(row["quantity"]))>=int(request_data["known"]["quantity"]):
@@ -131,7 +131,7 @@ def webhook():
 					for row in book[sheet]:
 						headers = row.keys()
 						if request_data["unknown"] in headers:
-							if request_data["known"]["product"] == row["product"].lower():
+							if request_data["known"]["product"] == row["product"]:
 								detail["match"],detail["result"] = True,row["location"]
 				if detail["match"]:
 					request_data["result"] = str(request_data["fulfillmentText"]).replace("*result",detail["result"])
